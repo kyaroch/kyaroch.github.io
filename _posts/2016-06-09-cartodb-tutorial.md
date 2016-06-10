@@ -75,7 +75,7 @@ It doesn't have any mapping information yet, so let's do the same with the zippe
 
 This table has lots of columns, most of which I'm not showing you. Two in particular are important here. The first is `the_geom`, which contains the shape we're mapping, although you can't see it in this view. The second is `vtdst10` – I have no idea what the name means, but this column contains the precinct number.
 
-We can use the precinct numbers to combine this table with the election results table, and thus associate the vote totals with the map data. However, the precinct number on that table has the datatype `number`, while this one is a `string` column – that is, it's actually storing a text representation of the number and not the number. Even if it looks the same to us, CartoDB won't recognize it as being the same. Fortunately, we can change this:
+We can use the precinct numbers to combine this table with the election results table, and thus associate the vote totals with the map data. However, the precinct number on the election results table has the datatype `number`, while the one on the shapefile table is a `string` column – that is, it's actually storing a text representation of the number and not the number. Even if it looks the same to us, CartoDB won't recognize it as being the same. Fortunately, we can change this:
 
 ![Viewing the dataset]({{ site.baseurl }}/assets/cartodb_change_column_type.png)
 
