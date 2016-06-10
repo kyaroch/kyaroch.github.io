@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How to Make (Relatively) Quick and Easy Election Maps with CartoDB"
-date:   2016-06-10 00:01:00 -0500
+date:   2016-06-10 13:10:00 -0500
 ---
 ## 1. Introduction
 
