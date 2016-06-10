@@ -24,7 +24,7 @@ In order to create an election map, we need two kinds of data:
 1. A table of election results for whatever geographical units we want to map – in this case, precincts - and;
 2. Geospatial data we can use to map the locations and boundaries of those precincts.
 
-Where you can get these things – and indeed, whether you can get them at all – will unfortunately vary depending on the election and the jurisdiction. The example we'll be using here is the 2016 Democratic presidential primary in Bernalillo County, New Mexico, where Albuquerque is located.
+Where you can get these things – and indeed, whether you can get them at all – will unfortunately vary depending on the election and the jurisdiction. The example we'll be using here is the 2016 Democratic presidential primary in Bernalillo County, New Mexico, where Albuquerque is located. (I mistyped the name of the county early on, and the mistake propagated to every screenshot. If you're from there, try to disregard this.)
 
 #### Election data
 Election data may be available from the city or county election board website, or from the state's Secretary of State website. Precinct-level election results for New Mexico are available from the [New Mexico Secretary of State](http://electionresults.sos.state.nm.us/default.aspx). [Here are the particular results we want](http://electionresults.sos.state.nm.us/resultsPREC.aspx?type=FED&rid=3525&cty=02%20&pty=DEM&osn=1). You'll notice that we can export them as a spreadsheet, which is what we'll do. (In some cases, you can only download them as a PDF, which wouldn't work for us.)
@@ -37,7 +37,7 @@ These results are in a simple and usable format, which is one reason I chose a N
 
 I also added a "Precinct Number" column that contains only the precinct number itself, rather than "PCT xxx" – the reason will be apparent shortly.
 
-We could also do this within CartoDB, but we'd have to use SQL, and I assume more people will know how to do this in a spreadsheet program.
+We could also create these new columns within CartoDB, but we'd have to use SQL, and I assume that spreadsheet programs are familiar to more people than SQL is.
 
 Once we upload this table to CartoDB, the order of the columns will be lost, and all characters except for letters, numbers, and spaces will be removed from the column names. Thus, you should make sure your columns all have descriptive headers that don't use any special characters.
 
@@ -53,7 +53,7 @@ CartoDB can use vector data in several different formats:
 * **KML** or **KMZ** files
 * **GeoJSON**
 
-The beauty of CartoDB is that you don't really need to know how these files work or what they contain, and for our purposes here they're basically interchangeable. The one relevant difference is that you need a set of several shapefiles with different extensions. CartoDB requires you to combine them in a single zip archive, which is often the form you'll find them in anyway.
+The beauty of CartoDB is that you don't really need to know how these files work or what they contain, and for our purposes here they're basically interchangeable. The one relevant difference is that in order to use shapefiles, you need a set of several files with different extensions. CartoDB requires you to combine them in a single zip archive, which is often the form you'll find them in anyway.
 
 Cities and counties will often have data portals or GIS websites where you can download these files – for example, see [this data for Chicago](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Precincts-current-/uvpq-qeeq) or [this data for San Francisco](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Election-Precincts-Zipped-Shapefile-Format-/w3ua-z2my). Even if they're not available online, the government probably has them; if you have press credentials or are feeling bold, you could call them and ask.
 
@@ -151,7 +151,7 @@ It turns out that this precinct has no votes, perhaps because it has few or no i
 
 This is a complicated subject I don't know much about. However, there are some helpful resources available.
 
-[ColorBrewer](http://colorbrewer2.org/) is a well-known tool that you can use to select and evaluate color schemes for maps. If you're using a diverging color scheme, it's important that the opposing colors appear equally prominent, and thee ColorBrewer color schemes are all known to work well. I also found [a tool for generating stepped gradients between any two colors](http://www.perbang.dk/rgbgradient/).
+[ColorBrewer](http://colorbrewer2.org/) is a well-known tool that you can use to select and evaluate color schemes for maps. If you're using a diverging color scheme, it's important that the opposing colors appear equally prominent, and all of the ColorBrewer color schemes are all known to work well. I also found [a tool for generating stepped gradients between any two colors](http://www.perbang.dk/rgbgradient/).
 
 Keep in mind that you want to keep the buckets distinct, but you may not want to use the entire range – if every single precinct was close, that's *information*, and you want to display that by keeping contrast relatively low. Also, it's worth checking the highest and lowest values for `hillary_clinton_percent` – you don't need to color in ranges that never occur on the map.
 
