@@ -207,6 +207,10 @@ Finally, let's add a descriptive title and some tags.
 
 I've never been to this county and know nothing about Albuquerque, but I'd be willing to bet that the dark green patch is the University of New Mexico.
 
+## 6. What else can I do with CartoDB?
+
+Lots of stuff. Take a look at the [CartoDB Map Academy](https://academy.cartodb.com/) to learn more.
+
 ## 7. Did I make any glaring mistakes?
 
 If any of the above is unclear, or if you have any suggestions as to how this tutorial can be improved, please let me know.
