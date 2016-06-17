@@ -29,11 +29,11 @@ Where you can get these things – and indeed, whether you can get them at all �
 #### Election data
 Election data may be available from the city or county election board website, or from the state's Secretary of State website. Precinct-level election results for New Mexico are available from the [New Mexico Secretary of State](http://electionresults.sos.state.nm.us/default.aspx). [Here are the particular results we want](http://electionresults.sos.state.nm.us/resultsPREC.aspx?type=FED&rid=3525&cty=02%20&pty=DEM&osn=1). You'll notice that we can export them as a spreadsheet, which is what we'll do. (In some cases, you can only download them as a PDF, which wouldn't work for us.)
 
-![Viewing the results in LibreOffice]({{ site.baseurl }}/assets/cartodb_libreoffice_screenshot_1.png)
+![Viewing the results in LibreOffice]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_libreoffice_screenshot_1.png)
 
 These results are in a simple and usable format, which is one reason I chose a New Mexico county as an example. In order to upload these to CartoDB, we'll want to delete everything except the data itself and the column headings. Also, we want to map vote percentages, not the raw numbers of votes, so let's add a few more columns:
 
-![Preparing the results in LibreOffice]({{ site.baseurl }}/assets/cartodb_libreoffice_screenshot_2.png)
+![Preparing the results in LibreOffice]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_libreoffice_screenshot_2.png)
 
 I also added a "Precinct Number" column that contains only the precinct number itself, rather than "PCT xxx" – the reason will be apparent shortly.
 
@@ -63,32 +63,32 @@ Failing that, try Google. In this case, I was able to find them on  [Data.gov](h
 
  Now that we have all the data we need, we're ready to upload it to CartoDB. Once you've registered or logged in, click "Datasets" and then "NEW DATASET":
 
- ![Uploading the dataset]({{ site.baseurl }}/assets/cartodb_uploading_dataset.png)
+ ![Uploading the dataset]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_uploading_dataset.png)
 
  Hit "CONNECT DATASET," wait a few moments, and our spreadsheet is now an SQL table:
 
-![Viewing the dataset]({{ site.baseurl }}/assets/cartodb_new_dataset.png)
+![Viewing the dataset]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_new_dataset.png)
 
 It doesn't have any mapping information yet, so let's do the same with the zipped shapefiles:
 
-![Viewing the shapefiles]({{ site.baseurl }}/assets/cartodb_new_shapefile_dataset.png)
+![Viewing the shapefiles]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_new_shapefile_dataset.png)
 
 This table has lots of columns, most of which I'm not showing you. Two in particular are important here. The first is `the_geom`, which contains the shape we're mapping, although you can't see it in this view. The second is `vtdst10` – I have no idea what the name means, but this column contains the precinct number.
 
 We can use the precinct numbers to combine this table with the election results table, and thus associate the vote totals with the map data. However, the precinct number on the election results table has the datatype `number`, while the one on the shapefile table is a `string` column – that is, it's actually storing a text representation of the number and not the number. Even if it looks the same to us, CartoDB won't recognize it as being the same. Fortunately, we can change this:
 
-![Viewing the dataset]({{ site.baseurl }}/assets/cartodb_change_column_type.png)
+![Viewing the dataset]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_change_column_type.png)
 
 CartoDB will warn you that unconvertible data will be lost, but since the contents of that column are all numbers, they'll convert just fine.
 
 Now we can merge the datasets:  
 
-![Merging the datasets]({{ site.baseurl }}/assets/cartodb_merge_dataset_menu.png)
+![Merging the datasets]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_merge_dataset_menu.png)
 
 Choose "Column Join," select `precinct_number` and `vtdst10`, and you can choose which columns to use:
 
 
-![Selecting columns]({{ site.baseurl }}/assets/cartodb_add_columns.png)
+![Selecting columns]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_add_columns.png)
 
 
 Make sure `the_geom` is coming from the shapefile dataset, but other than that, you may as well keep them all. Merge the datasets.
@@ -97,7 +97,7 @@ Note that the exact steps you need to follow will differ depending on the exact 
 
 For now, click "MAP VIEW," and you'll see that the precinct boundaries are all here:
 
-![Viewing the map]({{ site.baseurl }}/assets/cartodb_map_view.png)
+![Viewing the map]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_map_view.png)
 
 However, we haven't told CartoDB how to display the election results yet.
 
@@ -107,17 +107,17 @@ At this point, I'll click "VISUALIZE" and create a map. We don't really need to 
 
 Click on the "CSS" tab on the right-hand menu, and you'll see the styling rules that CartoDB is using:
 
-![CartoCSS]({{ site.baseurl }}/assets/cartodb_cartocss.png)
+![CartoCSS]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_cartocss.png)
 
 You may or may not be familiar with CSS, but it's pretty clear what this is doing. The polygons are colored bright orange (#FF6600), are 70% opaque, and are surrounded by white (#FFF) borders with thickness 0.5.
 
 We want to make the styling reflect our data. Click the paintbrush to take a look at the CartoDB wizards, and you'll see that there are some built-in options for doing this:
 
-![CartoDB wizard]({{ site.baseurl }}/assets/cartodb_wizard.png)
+![CartoDB wizard]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_wizard.png)
 
 There's a wizard for creating [chloropleths](https://en.wikipedia.org/wiki/Choropleth_map), which is the type of map we want to make. We can use any numeric column. If we convert `hillary_clinton_percent` to a number, select it, and pick a diverging color scheme, as above, we've already got an election map:
 
-![CartoDB wizard map]({{ site.baseurl }}/assets/cartodb_wizard_map.png)
+![CartoDB wizard map]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_wizard_map.png)
 
 Not bad! But there are some issues here. The color mapping isn't quite symmetrical – a dark blue precinct has a smaller Sanders margin than the Clinton margin in a dark red precinct, and although the center point is pretty close to 50%, it's a bit off. This is because CartoDB has no idea what these numbers actually mean - it doesn't know that 50 is an important number when mapping elections, or that Clinton +10% and Sanders +10% should look equivalent in some way.
 
@@ -127,7 +127,7 @@ Also, the color scheme options are limited. We can't use more than 7 buckets, an
 
 So let's go back to the CSS panel and take a look at what CartoDB is actually doing:
 
-![CartoDB wizard CSS]({{ site.baseurl }}/assets/cartodb_wizard_css.png)
+![CartoDB wizard CSS]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_wizard_css.png)
 
 The rules in brackets are conditionals. If that rule applies to a polygon, the styles within the block are applied to that polygon. So if `hillary_clinton_percent` is less than or equal to 69.33, the polygon will be colored #ff4d4d, or bright red. If `hillary_clinton_percent` is less than or equal to 57.54, it will be colored #ff7a7a, or lighter red. And so on.
 
@@ -139,13 +139,13 @@ There are a few important things to understand about these rules:
 
 In the simplest case, we could just do this:
 
-![Simple CSS]({{ site.baseurl }}/assets/cartodb_simple_css.png)
+![Simple CSS]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_simple_css.png)
 
-![Simple map]({{ site.baseurl }}/assets/cartodb_simple_map.png)
+![Simple map]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_simple_map.png)
 
 Now we can see which candidate won each precinct. This also brings up another issue. I could've just made purple the default color, since Hillary Clinton presumably didn't get more than 100% in any precinct – but I recommend leaving a contrasting color as the default, so you'll immediately see if any precincts don't match any of your rules. And one of them doesn't! If we click on the polygon and click the leftmost icon, we can view and edit the data:
 
-![Editing polygon data]({{ site.baseurl }}/assets/cartodb_polygon_data.png)
+![Editing polygon data]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_polygon_data.png)
 
 It turns out that this precinct has no votes, perhaps because it has few or no inhabitants. At some point we'll need to figure out how to deal with this.
 
@@ -159,19 +159,19 @@ Keep in mind that you want to keep the buckets distinct, but you may not want to
 
 I used these tools earlier to generate an elaborate stepped purple/green color scheme specifically for two-candidate primary elections, so I'm going to use that. Using 20 buckets is probably overkill and you don't need to do it. I'm also going to change `line-width` to 0, because this makes it easier to see the colors when you're zoomed out. (In an application where it was important to know exactly where the boundaries were, you would not want to do this.)
 
-![Manual CSS]({{ site.baseurl }}/assets/cartodb_manual_cartocss.png)
+![Manual CSS]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_manual_cartocss.png)
 
-![Manual CSS]({{ site.baseurl }}/assets/cartodb_manual_map.png)
+![Manual CSS]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_manual_map.png)
 
 See that big green precinct at the bottom of the screenshot? If we look at the data, we'll find it has only 25 votes. Precincts with small numbers of votes are often outliers. We can use an SQL query to view only those precincts:
 
-![Running an SQL query]({{ site.baseurl }}/assets/cartodb_sql_query.png)
+![Running an SQL query]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_sql_query.png)
 
-![Viewing the SQL query]({{ site.baseurl }}/assets/cartodb_sql_query_map.png)
+![Viewing the SQL query]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_sql_query_map.png)
 
 In this case there are only a few. In some cases, there are quite a lot – for example, if you're mapping the Republican primary in Chicago, at least half the city will show up in this query. The results from precincts like this are essentially random noise. I suggest that we don't show them:
 
-![Changing the opacity]({{ site.baseurl }}/assets/cartodb_css_opacity_rule.png)
+![Changing the opacity]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_css_opacity_rule.png)
 
 The precincts are still there, but now that we've set the opacity to 0, they are transparent.
 
@@ -181,31 +181,31 @@ The precincts are still there, but now that we've set the opacity to 0, they are
 
 When your users click on a precinct, they'll see an infowindow, which is currently empty. You can choose which fields to display in this window, then edit the HTML to customize how these fields are displayed.
 
-![Selecting fields]({{ site.baseurl }}/assets/cartodb_infowindow_selection.png)
+![Selecting fields]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_infowindow_selection.png)
 
-![Editing HTML]({{ site.baseurl }}/assets/cartodb_infowindow_html.png)
+![Editing HTML]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_infowindow_html.png)
 
-![The infowindow]({{ site.baseurl }}/assets/cartodb_infowindow.png)
+![The infowindow]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_infowindow.png)
 
 #### The legend
 
 Earlier, the chloropleth wizard automatically generated a legend for us. I turned it off in the options menu, but it's still there. Let's turn it back on, paste in the appropriate colors, and add labels:
 
-![Options]({{ site.baseurl }}/assets/cartodb_options.png)
+![Options]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_options.png)
 
-![Editing the legend]({{ site.baseurl }}/assets/cartodb_legend_colors.png)
+![Editing the legend]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_legend_colors.png)
 
 #### Title and metadata
 
 Finally, let's add a descriptive title and some tags.
 
-![Metadata]({{ site.baseurl }}/assets/cartodb_metadata.png)
+![Metadata]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_metadata.png)
 
 #### And we're done!
 
 [You can view the map here.](https://kjyaroch.cartodb.com/viz/cbadc9e8-2eb8-11e6-899f-0e3ff518bd15/public_map)
 
-![The final map]({{ site.baseurl }}/assets/cartodb_final_map.png)
+![The final map]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_final_map.png)
 
 I've never been to this county and know nothing about Albuquerque, but I'd be willing to bet that the dark green patch is the University of New Mexico.
 
