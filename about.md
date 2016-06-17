@@ -8,6 +8,12 @@ permalink: /about/
 
 My name is Kevin Yaroch. I live in Chicago and telecommute to California.
 
+### What do you look like?
+
+Approximately like this:
+
+![Portrait]({{ site.baseurl }}/assets/images/static-pages/portrait-500.jpg)
+
 ### What is your job?
 
 I develop web applications for my company's intranet. Among other things, these
@@ -25,10 +31,11 @@ and a variety of other miscellaneous IT experience I've acquired over the years.
 
 Many, including:
 
-* Mapping ([here are some maps I've made](https://kjyaroch.cartodb.com/maps))
 * [Photography](https://www.flickr.com/photos/kvyar/)
+* Mapping ([here are some maps I've made](https://kjyaroch.cartodb.com/maps))
 * Urban planning and housing policy
 * History (especially the US and modern Europe)
+* Architecture
 * Data science
 
 ### Where else can I find you?
