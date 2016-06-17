@@ -6,7 +6,6 @@ date:   2016-06-10 09:10:00 -0500
 ## 1. Introduction
 
 #### What is CartoDB?
-
 [CartoDB](https://cartodb.com/) is a web-based service you can use to create and  host maps based on datasets you upload. The basic service is free, although a paid account allows you to host private maps and use various additional features.
 
 #### What skills do I need in order to use CartoDB?
