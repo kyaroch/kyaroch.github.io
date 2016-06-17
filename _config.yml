@@ -6,10 +6,10 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Kevin Yaroch
+title: kevinyaro.ch
 email: kjyaroch@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  This is a bunch of static files I guess. Hi guys
+description: >
+  Information and minor writings
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://kyaroch.github.io" # the base hostname & protocol for your site
 github_username:  kyaroch
