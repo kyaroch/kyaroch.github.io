@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Pandas and Geographic Polarization"
-date:   2016-06-18 0:10:00 -0500
+date:   2016-06-20 16:44:00 -0500
 ---
 This post is the first of an open series of posts in which I attempt to learn
 how to use Python data analysis tools, while simultaneously learning about US
@@ -9,7 +9,7 @@ presidential elections. (Why US presidential elections? Because the data is
 generally easy to find, and many people genuinely care about the subject.)
 
 Our subject today is geographic polarization – specifically, how much US states
-differ from each other with respect to voting behavior.
+differ from each other with respect to voting behavior in presidential elections.
 
 Ronald Reagan won the 1984 presidential election by 18 points, and lost only one
 state (Minnesota). Barack Obama won by 7 points in 2008, and won 28 states. If
@@ -83,10 +83,10 @@ Alaska      NaN     NaN     NaN     NaN     NaN     NaN     NaN     NaN   NaN
 Alaska is `NaN` (not a number) in these columns because it didn't exist, but
 fortunately pandas will ignore these placeholder values by default.
 
-I am aware of several different ways to measure statistical dispersion. I lack
-the expertise to determine which one is best, so the best approach is to try
-them all. If they all tell us the same thing, problem solved; if not, we can
-investigate further.
+For the moment, we'll define "polarization" to mean "statistical dispersion." I
+know of several ways to measure this, and lack the expertise to determine which
+one is best, so the best approach is to try them all. If they all tell us the
+same thing, problem solved; if not, we can investigate further.
 
 The best-known of these measures is **variance**. Pandas makes it extremely easy
 to obtain the variance of every column, as a Series:
@@ -138,9 +138,10 @@ in exactly the same way we did the variance, except by calling
 ![State presidential vote MAD]({{ site.baseurl }}/assets/images/state-presidential-vote-dispersion/state_results_mad.png)
 
 This has calmed the chart down a bit, but it's still showing us the same basic
-picture, which is good. The other good thing – and this is *really interesting*
-– is that the structure of the chart seems to correspond to the
-[standard periodization of US party politics](https://en.wikipedia.org/wiki/Political_parties_in_the_United_States#History).
+pattern, which is good. (Note: there is actually a subtle difference here I
+initially missed, which we'll discuss later.) The other good thing – and this is
+*really interesting* – is that the structure of the chart seems to correspond to
+the [standard periodization of US party politics](https://en.wikipedia.org/wiki/Political_parties_in_the_United_States#History).
 You might guess from looking at this figure that something important changed in
 1892–1896, and [you would be correct](https://en.wikipedia.org/wiki/Third_Party_System#Climax_and_collapse.2C_1890.E2.80.931896).
 Of course, humans can see patterns in everything, and this could be coincidence,
@@ -150,11 +151,11 @@ So is geographic polarization increasing now? Clearly yes, but this looks like
 a reversion to the old pattern – polarization was at historic lows from roughly
 the 1940s to the 1990s. This makes sense. The subject is complex, and I can't do
 it justice here, but it's reasonably well-known that the Democratic party used
-to have a liberal Northern wing and a conservative Southern wing, and vice versa
-for the Republicans. This arrangement started to break down in the 1960s, but
-the parties didn't entirely sort themselves out (ideologically and
-geographically) until the 1990s, or arguably even the early 2000s. We can see it
-happening on the chart.
+to have a liberal Northern wing and a conservative Southern wing, as did the
+Republicans. This arrangement started to break down in the 1960s, but the
+parties didn't entirely sort themselves out (ideologically and geographically)
+until the 1990s, or arguably even the early 2000s. We can see it happening on
+the chart.
 
 There is another robust measure of dispersion, which is the interquartile range
 – just the difference between the 75th and 25th percentiles. Pandas doesn't have
@@ -171,16 +172,18 @@ save_plot(iqr(state_data), plot_name='state_results_iqr')
 ![State presidential vote IQR]({{ site.baseurl }}/assets/images/state-presidential-vote-dispersion/state_results_iqr.png)
 
 This is. . . odd. The pattern is recognizably similar, but it's flattened out,
-and the relative positions of some elections have changed. Notably, the last two
-elections appear much more polarized relative to historical elections.
+and the relative positions of some elections have changed considerably.
 
-The results for some elections may be distributed in a way that causes problems
-for one or both of these measures. I've been assuming on some level that the
-election results (except the outliers) are normally distributed, but of course
-some could have asymmetrical or bimodal distributions, which would affect the
-measurements in ways I don't fully understand. This is something to investigate
-further.
+In the next post in this series, we'll try to find out why these patterns are
+different. This will expose two serious problems with the foregoing
+analysis:
+
+* We've been relying on an unspoken assumption that the election results are
+roughly normally distributed, or at least that they all follow much the same
+distribution, but we never actually investigated whether this was the case.
+(Spoiler: nope.)
+* We never clearly defined "geographic polarization."
 
 It would also be nice to have more readable charts where each election is
 readily identifiable, and maybe shade them to indicate periodization. I don't
-know how to do this either. We may return to these two things in a future post.
+know how to do this either, and thus it is another topic for a future post.
