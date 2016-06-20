@@ -44,3 +44,4 @@ Many, including:
 * [Facebook](https://www.facebook.com/kjyaroch)
 * [Goodreads](https://www.goodreads.com/user/show/5957941-kevin-yaroch) (this one is updated only sporadically)
 * [LibraryThing](https://www.librarything.com/profile/kvyar) (ditto)
+* [Bandcamp](https://bandcamp.com/kvyar)
