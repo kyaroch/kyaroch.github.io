@@ -8,19 +8,20 @@ how to use Python data analysis tools, while simultaneously learning about US
 presidential elections. (Why US presidential elections? Because the data is
 generally easy to find, and many people genuinely care about the subject.)
 
-Our subject today is geographic polarization.
+Our subject today is geographic polarization – specifically, how much US states
+differ from each other with respect to voting behavior.
 
 Ronald Reagan won the 1984 presidential election by 18 points, and lost only one
-state (Minnesota). Barack Obama won by 7 points in 2008, and won twenty-eight
-states. If we add 11 more points to Obama's 2008 margin in every state, we find
-that he would only have won seven more states, and would still have lost fifteen
-of them. It looks like an electoral college landslide like the ones that
-occurred in 1972 and 1984 is now impossible, because states have become much
-more different from each other in terms of partisan politics.
+state (Minnesota). Barack Obama won by 7 points in 2008, and won 28 states. If
+we add 11 more points to Obama's 2008 margin in every state, we find that he
+would only have won 7 more states, and would still have lost 15 of them. It
+looks like an electoral college landslide like the ones that occurred in 1972
+and 1984 is now impossible, because US states have become much more
+heterogeneous.
 
 Can we quantify how much this polarization has increased? How far back does this
-trend go? Has polarization ever been this high before? Let's see if we can find
-out.
+trend go? Has the US ever been this regionally polarized before? Let's see if we
+can find out.
 
 Stephen Wolf at Daily Kos has created a [spreadsheet of state-by-state results for every presidential election from 1828 (when popular vote totals were first recorded) to 2012](http://www.dailykos.com/story/2014/8/20/1323254/-New-Spreadsheet-with-1828-2012-Presidential-Results-PVI-by-State-Neatly-Colored).
 In order to assemble the dataset we'll be using, I copied the vote percentages
@@ -79,8 +80,8 @@ Alaska      NaN     NaN     NaN     NaN     NaN     NaN     NaN     NaN   NaN
 ...
 {% endhighlight %}
 
-Alaska is `NaN` (not a number) because it didn't exist, but fortunately pandas
-will ignore these placeholder values by default.
+Alaska is `NaN` (not a number) in these columns because it didn't exist, but
+fortunately pandas will ignore these placeholder values by default.
 
 I am aware of several different ways to measure statistical dispersion. I lack
 the expertise to determine which one is best, so the best approach is to try
@@ -100,8 +101,8 @@ to obtain the variance of every column, as a Series:
 {% endhighlight %}
 
 Since pandas incorporates the data visualization library [matplotlib](http://matplotlib.org/index.html),
-we can also make a plot rather easily. We'll be doing this a few times, so I'll
-define a method:
+we can also plot the data rather easily. We'll be doing this a few times, so
+I'll define a method:
 
 {% highlight python %}
 import matplotlib.pyplot as plt
@@ -157,7 +158,7 @@ happening on the chart.
 
 There is another robust measure of dispersion, which is the interquartile range
 – just the difference between the 75th and 25th percentiles. Pandas doesn't have
-a built-in method for this, but it's easy enough to calculate:
+a built-in method for this that I can find, but it's easy enough to calculate:
 
 {% highlight python %}
 def iqr(data):
