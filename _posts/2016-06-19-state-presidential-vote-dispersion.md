@@ -30,7 +30,7 @@ for the winning candidate in every year into a CSV file, which you can view on
 
 There are at least two problems with this approach. First, it doesn't provide
 complete information about elections with three or more candidates. I suspect
-that the results in 1968, in particular, will appear much more homogenous than
+that the results in 1968, in particular, will appear much more homogeneous than
 they should. However, I don't know what statistical methods one could use to
 properly evaluate this.
 
@@ -42,7 +42,7 @@ those states as 100%/0% and accept that the elections will show up as huge
 outliers no matter what we do. I chose the second approach. There are a few
 other anomalies as well, like Benjamin Harrison (the incumbent president!)
 having no ballot access in Florida in 1892, but they only affect one or two
-states in any given year, so I've just left out the affected states.
+states in any given year, so they shouldn't have much impact on our results.
 
 We'll be analyzing this dataset using [pandas](http://pandas.pydata.org/), a
 data analysis library for Python. Pandas uses two primary data structures: the
@@ -63,10 +63,9 @@ state_data = pandas.read_csv(state_data_path) \
 After creating the DataFrame, we define the 'State' column as an index, so
 pandas will know it doesn't actually contain data, and drop Washington, DC
 because it's consistently an outlier. The last method call reverses the column
-order, because the source file happens to be in reverse chronological order. (It
-seems like there should be a less opaque way to accomplish that.) These methods
-all return a new DataFrame rather than altering the existing one, unless you
-pass `inplace=True` as a parameter.
+order, because the source file happens to be in reverse chronological order.\
+These methods all return a new DataFrame rather than altering the existing one,
+unless you pass `inplace=True` as a parameter.
 
 Our data is now in a usable form:
 
@@ -111,13 +110,15 @@ def save_plot(series, plot_name):
     plt.figure()
     plot = series.plot()
     plot.get_figure().savefig(plot_name + '.png')
+    plt.close('all')
 
 save_plot(state_data.var(), plot_name='state_results_variance')
 {% endhighlight %}
 
-Calling `plt.figure()` is necessary because it resets the figure – otherwise,
-when we plot more series, everything we've plotted before will show up in the
-new plots. This initially confused me.
+Calling `plt.figure()` is necessary because it initializes a new figure –
+otherwise, when we plot more series, everything we've plotted before will show
+up in the new figure. We then close the plot so it doesn't continue to consume
+memory. (There may be a better way to do this.) This initially confused me.
 
 Here is the plot:
 
@@ -139,9 +140,9 @@ in exactly the same way we did the variance, except by calling
 
 This has calmed the chart down a bit, but it's still showing us the same basic
 pattern, which is good. (Note: there is actually a subtle difference here I
-initially missed, which we'll discuss later.) The other good thing – and this is
-*really interesting* – is that the structure of the chart seems to correspond to
-the [standard periodization of US party politics](https://en.wikipedia.org/wiki/Political_parties_in_the_United_States#History).
+initially missed, which we'll discuss in the next post.) The other good thing –
+and this is *really interesting* – is that the structure of the chart seems to
+correspond to the [standard periodization of US party politics](https://en.wikipedia.org/wiki/Political_parties_in_the_United_States#History).
 You might guess from looking at this figure that something important changed in
 1892–1896, and [you would be correct](https://en.wikipedia.org/wiki/Third_Party_System#Climax_and_collapse.2C_1890.E2.80.931896).
 Of course, humans can see patterns in everything, and this could be coincidence,
