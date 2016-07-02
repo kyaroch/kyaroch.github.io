@@ -56,9 +56,9 @@ representation in such a way that it can be used directly in an SQL query. Two
 major caveats about this:
 
 * Formatting the string in this way removes the time zone.
-* Interpolating user-submitted input directly into an SQL query is not good
-practice, obviously. Passing a symbol as a parameter to `#to_s` will raise an
-exception with most object types other than `DateTime`, notably including
-`String` itself. Still, I'd be careful with this. (In the context where I used
-this, it shouldn't matter, as the times being used in the query are set inside
-the model and there's no way for a user to manipulate them.)
+* Interpolating user-submitted input directly into an SQL query is [not good practice](http://rails-sqli.org/),
+obviously. Passing a symbol as a parameter to `#to_s` will raise an exception
+with most object types other than `DateTime`, notably including `String` itself.
+Still, I'd be careful with this. (In the context where I used this, it shouldn't
+matter, as the times being used in the query are set inside the model and
+there's no way for a user to manipulate them.)
