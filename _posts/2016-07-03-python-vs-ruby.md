@@ -30,7 +30,7 @@ simplicity is good, but brevity is also good. The less code there is, the more
 quickly you can read it and understand what it does. Some of Ruby's deviations
 from the Python "There's Only One Way To Do It" ethos are beneficial in this
 regard. Some people have a problem with one-line conditionals and `unless`
-because they're redundant, but if you see `raise ArgumentError unless x > 0` or
+because they're redundant, but if you see `raise ArgumentError if x < 0` or
 `unless foo == bar`, it's immediately clear what that means. Ruby also has the
 ternary operator, which Python did eventually approximate with the
 `x = y if a else z` syntax, but that's just weird.
