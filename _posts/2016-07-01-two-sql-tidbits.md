@@ -2,6 +2,7 @@
 layout: post
 title:  "Two Small Findings About SQL and Rails"
 date:   2016-07-01 15:10:00 -0500
+comments: true
 ---
 Part 2 of the geographic polarization post should be up soon; I got distracted
 by another project for long enough that I'll have to spend some time figuring

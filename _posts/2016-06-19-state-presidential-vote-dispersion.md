@@ -2,6 +2,7 @@
 layout: post
 title:  "Pandas and Geographic Polarization"
 date:   2016-06-20 16:44:00 -0500
+comments: true
 ---
 This post is the first of an open series of posts in which I attempt to learn
 how to use Python data analysis tools, while simultaneously learning about US
