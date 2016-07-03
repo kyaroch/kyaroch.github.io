@@ -21,8 +21,8 @@ Things I miss about Ruby when using Python:
 * Symbols rather than words for logical operators (`||`, `&&`, `!`). They look different from the words surrounding them, so you can visually parse the line at a glance.
 * Enumerators! As I understand it, Python for loops are just syntactic sugar for the `__iter__` method anyway, so why not make it explicit?
 * Consistent object orientation; most everything is a method instead of a keyword/operator/built-in function. This is more intuitive to me, and lets you do lots of stuff by chaining methods.
-* `if` and `case` statements are expressions that return a value.
 * (Specifically, why the heck are `map()`, `reduce()`, etc. built-in functions in Python instead of methods on iterable objects?)
+* `if` and `case` statements are expressions that return a value.
 * Lots of things that make it easier to be succinct – occasionally at the expense of more complexity, but I don’t mind this in cases where it’s obvious what is happening.
 
 To elaborate on the last point: I think that explicitness is good, and
