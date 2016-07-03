@@ -2,6 +2,7 @@
 layout: post
 title:  "Relatively Uninformed Reflections on Two Scripting Languages"
 date:   2016-07-03 12:00:00 -0500
+comments: true
 ---
 
 Things I miss about Python when using Ruby:
