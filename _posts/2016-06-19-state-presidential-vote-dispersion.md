@@ -9,7 +9,7 @@ how to use Python data analysis tools, while simultaneously learning about US
 presidential elections. (Why US presidential elections? Because the data is
 generally easy to find, and many people genuinely care about the subject.)
 
-Our subject today is geographic polarization – specifically, how much US states
+Our subject today is geographic polarization – specifically, the extent to which US states
 differ from each other with respect to voting behavior in presidential elections.
 
 Ronald Reagan won the 1984 presidential election by 18 points, and lost only one
