@@ -24,7 +24,7 @@ Solution: go to Settings > Options > Map Tools and turn the zoom factor all the 
 
 ## 3. Preparing your data
 
-As in the previous tutorial, we need two types of data: vector data providing the shapes and locations of the counties, and a spreadsheet providing the election results. I've placed this data in a [GitHub repo](ADD LINK TO REPO) for convenience, but I'll detail how to obtain it below.
+As in the previous tutorial, we need two types of data: vector data providing the shapes and locations of the counties, and a spreadsheet providing the election results. I've placed this data in a [GitHub repo](https://github.com/kyaroch/qgis_election_map_tutorial) for convenience, but I'll detail how to obtain it below.
 
 ### Vector data
 
