@@ -6,7 +6,7 @@ permalink: /about/
 
 ### Who are you?
 
-My name is Kevin Yaroch. I live in Chicago and telecommute to California.
+My name is Kevin Yaroch. I live and work in Chicago.
 
 ### What do you look like?
 
@@ -16,17 +16,7 @@ Approximately like this:
 
 ### What is your job?
 
-I develop web applications for my company's intranet. Among other things, these
-websites compile some of the information used in the [HE BGP Toolkit](http://bgp.he.net/).
-My duties have varied over the years and sometimes also include Linux system
-administration and support for colocation and IP transit customers.
-
-### What technologies do you know how to use?
-
-I have a reasonably in-depth knowledge of Ruby, Rails, and SQL, and some
-knowledge of Python and JavaScript. I also have TCP/IP networking experience,
-and a variety of other miscellaneous IT experience I've acquired over the years.
-
+I'm a software developer.
 ### What other interests do you have?
 
 Many, including:
