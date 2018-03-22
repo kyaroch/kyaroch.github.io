@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Mapping the 2018 Illinois Democratic Primary in Chicago"
-date:   2018-3-22 14:00:00 -0500
+date:   2018-3-22 15:23:00 -0500
 comments: true
 ---
 I made these maps in QGIS, using an approach similar to that I described in [my tutorial]({{ site.baseurl }}{% post_url 2017-5-24-qgis-tutorial %}). The OpenStreetMap layers are unfortunately rendered at the wrong scale, so the labels are illegible; I tried to fix this in a few different ways, but it appears to be impossible to fix without expending more time than I currently wish to. To view a larger version, open the image in a new tab.
