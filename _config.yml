@@ -22,4 +22,4 @@ markdown: kramdown
 highlighter: rouge
 permalink: pretty
 paginate: 5
-gems: [jekyll-paginate, jekyll-feed]
+plugins: [jekyll-paginate, jekyll-feed]
