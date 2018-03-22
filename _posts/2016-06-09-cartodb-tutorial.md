@@ -115,7 +115,7 @@ We want to make the styling reflect our data. Click the paintbrush to take a loo
 
 ![CartoDB wizard]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_wizard.png)
 
-There's a wizard for creating [chloropleths](https://en.wikipedia.org/wiki/Choropleth_map), which is the type of map we want to make. We can use any numeric column. If we convert `hillary_clinton_percent` to a number, select it, and pick a diverging color scheme, as above, we've already got an election map:
+There's a wizard for creating [choropleths](https://en.wikipedia.org/wiki/Choropleth_map), which is the type of map we want to make. We can use any numeric column. If we convert `hillary_clinton_percent` to a number, select it, and pick a diverging color scheme, as above, we've already got an election map:
 
 ![CartoDB wizard map]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_wizard_map.png)
 
@@ -123,7 +123,7 @@ Not bad! But there are some issues here. The color mapping isn't quite symmetric
 
 Also, the color scheme options are limited. We can't use more than 7 buckets, and the only two diverging color schemes are red/green (which we don't want to use because some people are colorblind) and red/blue (which we also don't want to use in this case, for symbolic reasons).
 
-(A bit of an aside here: typically, when mapping quantitative data in a chloropleth like this, you want to use a [**sequential** color scheme](http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeq.html). Using a diverging scheme, with two colors, implies that there's something special about the center point. In a two-candidate election map, there is – the 50% mark determines which candidate wins. But if the center point is just whatever the average happens to be, it's misleading.)
+(A bit of an aside here: typically, when mapping quantitative data in a choropleth like this, you want to use a [**sequential** color scheme](http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeq.html). Using a diverging scheme, with two colors, implies that there's something special about the center point. In a two-candidate election map, there is – the 50% mark determines which candidate wins. But if the center point is just whatever the average happens to be, it's misleading.)
 
 So let's go back to the CSS panel and take a look at what CartoDB is actually doing:
 
@@ -189,7 +189,7 @@ When your users click on a precinct, they'll see an infowindow, which is current
 
 #### The legend
 
-Earlier, the chloropleth wizard automatically generated a legend for us. I turned it off in the options menu, but it's still there. Let's turn it back on, paste in the appropriate colors, and add labels:
+Earlier, the choropleth wizard automatically generated a legend for us. I turned it off in the options menu, but it's still there. Let's turn it back on, paste in the appropriate colors, and add labels:
 
 ![Options]({{ site.baseurl }}/assets/images/cartodb-tutorial/cartodb_options.png)
 
